@@ -1,9 +1,9 @@
+mail.szgzw.gov.cn:25
+mail.szgzw.gov.cn:110
+mail.szgzw.gov.cn:995
+mail.szgzw.gov.cn:465
+mail.szgzw.gov.cn:993
+mail.szgzw.gov.cn:143
+sam.szgzw.gov.cn:8443
 sam.szgzw.gov.cn:443
 sam.szgzw.gov.cn:8081
-sam.szgzw.gov.cn:8443
-mail.szgzw.gov.cn:995
-mail.szgzw.gov.cn:110
-mail.szgzw.gov.cn:143
-mail.szgzw.gov.cn:993
-mail.szgzw.gov.cn:25
-mail.szgzw.gov.cn:465
