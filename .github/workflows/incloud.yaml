@@ -70,8 +70,11 @@ jobs:
           #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | tee naabu.txt
           naabu -l passive_subdomains.txt -tp 1000 -c 3000 | tee naabu.txt
           cat naabu.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
-          #cat naabu.txt | waybackurls | tee way_urls.txt
-          cat naabu.txt | waybackurls > way_urls.txt
+          ##cat naabu.txt | waybackurls | tee way_urls.txt
+          #cat naabu.txt | waybackurls > way_urls.txt
+
+          git clone https://github.com/projectdiscovery/fuzzing-templates.git
+          nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 05
           
         shell: bash
 
@@ -80,8 +83,8 @@ jobs:
           git add *.txt
       - name: Commit results to Github
         run: |
-          git config --local user.email "admin@inbug.org"
-          git config --global user.name "inbug-team"
+          git config --local user.email "admin@kylin.org"
+          git config --global user.name "kylin-team"
           git commit -m "InCloud Report" -a --allow-empty
       - name: Push changes
         uses: ad-m/github-push-action@master
