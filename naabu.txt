@@ -1,2 +1,2 @@
-www.szzgh.org:80
 www.szzgh.org:443
+www.szzgh.org:80
