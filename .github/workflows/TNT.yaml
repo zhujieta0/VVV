@@ -1,4 +1,4 @@
-name: incloud
+name: TNT
 
 on:
     workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
           go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
           go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
           go install -v github.com/lc/gau/v2/cmd/gau@latest
-          #go install -v github.com/tomnomnom/waybackurls@latest
+          go install -v github.com/tomnomnom/waybackurls@latest
           go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
           #go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
           
@@ -43,38 +43,44 @@ jobs:
 #           path: /home/runner/go
 #           key: ${{ runner.os }}-go-tools
 
-      - name: Running SubFinder for passive DNS enumeration
+      - name: Running DNS enumeration...
         run: |
           rm -rf *_*.txt
-          subfinder -dL domains.txt -config config/subfinder-config.yaml -o passive_subdomains.txt
+          subfinder -dL domains.txt -config config/subfinder-config.yaml -o active_subdomains.txt
+          dnsx -l passive_subdomains.txt -t 350 | tee -a active_subdomains.txt
+          sort -u active_subdomains.txt     
         shell: bash
 
-      - name: Running dnsx for valid DNS filtering 
+
+      - name: Running httpx for HTTP webservers probbing
         run: |
-          dnsx -l passive_subdomains.txt -t 50 | tee active_subdomains.txt
+
+           httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -p 1-65535 -t 730 | tee active_urls.txt
+           httpx -l active_subdomains.txt -title -t 230
         shell: bash
 
-
-#       - name: Running httpx for HTTP webservers probbing
-#         run: |
-#           httpx -l active_subdomains.txt -title -t 230
-#           httpx -l active_subdomains.txt -t 230 | tee active_urls.txt
-#         shell: bash
-
-      - name: Running Nuclei for vulnerability assessment
+      - name: Running way/gau for getting all urls...
         continue-on-error: true
+        timeout-minutes: 100
         run: |
-          #nuclei -ut
+          #nuclei -ut | nuclei -up
           #nuclei -tags log4j -l active_urls.txt -bs 100 -c 50 -rl 300 -nc | tee nuclei_output.txt
           #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | httpx -title -t 230 | tee naabu.txt
           #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | tee naabu.txt
-          naabu -l passive_subdomains.txt -tp 1000 -c 3000 | tee naabu.txt
-          cat naabu.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
+          #naabu -l passive_subdomains.txt -tp 1000 -c 3000 | tee naabu.txt
           ##cat naabu.txt | waybackurls | tee way_urls.txt
-          #cat naabu.txt | waybackurls > way_urls.txt
+          
+          cat active_urls.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
+          cat active_urls.txt | waybackurls > way_urls.txt | tee -a ga_urls.txt
+          sort -u ga_urls.txt
 
+      - name: Running NucleiFuzing for vulnerability assessment
+        continue-on-error: true
+        timeout-minutes: 340
+        run: |
+          nuclei -up
           git clone https://github.com/projectdiscovery/fuzzing-templates.git
-          nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 05
+          nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 50 -o nuc_out.txt
           
         shell: bash
 
