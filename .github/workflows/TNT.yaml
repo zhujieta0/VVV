@@ -61,7 +61,7 @@ jobs:
 
       - name: Running way/gau for getting all urls...
         continue-on-error: true
-        timeout-minutes: 100
+        timeout-minutes: 340
         run: |
           #nuclei -ut | nuclei -up
           #nuclei -tags log4j -l active_urls.txt -bs 100 -c 50 -rl 300 -nc | tee nuclei_output.txt
