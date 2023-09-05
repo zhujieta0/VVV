@@ -55,7 +55,8 @@ jobs:
       - name: Running httpx for HTTP webservers probbing
         run: |
 
-           httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -p 1-65535 -t 730 | tee active_urls.txt
+           #httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -p 1-65535 -t 730 | tee active_urls.txt
+           httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -t 730 -o active_urls.txt
            httpx -l active_subdomains.txt -title -t 230
         shell: bash
 
@@ -72,7 +73,7 @@ jobs:
           
           cat active_urls.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
           cat active_urls.txt | waybackurls > way_urls.txt | tee -a ga_urls.txt
-          sort -u ga_urls.txt
+          #sort -u ga_urls.txt
 
       - name: Running NucleiFuzing for vulnerability assessment
         continue-on-error: true
