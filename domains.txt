@@ -1,2 +1,1 @@
-live.com
-office.com
+epam.com
