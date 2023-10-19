@@ -1,1 +1,2 @@
-mattermost.com
+doc.mattermost.com
+bandcamp.com 
