@@ -1,3 +1,11 @@
+http://8n8.com/
+https://8n8.com/
+https://8n8.com/cl/bottom.php
+https://8n8.com/cl/main.php?offer=
+https://8n8.com/cl/top.php
+https://8n8.com/member/check/speed.php
+http://8n8.com/robots.txt
+https://8n8.com/robots.txt
 http://www.8n8.com:80/
 https://www.8n8.com/?intr=8881
 https://www.8n8.com/?intr=8882
@@ -120,7 +128,6 @@ http://8n8.com/ds.php?t=1297131763&c=ds_80&h=ce0495574d7d16466cb9a09a7cd1a01a152
 http://www.8n8.com:80/empty.html
 http://8n8.com/favicon.ico
 http://www.8n8.com:80/Features/features.html
-http://8n8.com/feed/
 http://www.8n8.com:80/footer2.php?dom=8n8.com&adm=expired@dotregistrar.com&sta=7&txt=&url=&ref=&prm=0
 http://www.8n8.com:80/footer2.php?dom=8n8.com&adm=expired@dotregistrar.com&sta=7&txt=&url=&ref=
 http://www.8n8.com:80/free
@@ -483,7 +490,6 @@ http://tf999.8n8.com:80/DMS.html
 http://tf999.8n8.com:80/empty.html
 http://tf999.8n8.com:80/footer2.php?dom=8n8.com&adm=expired@dotregistrar.com&sta=7&txt=&url=&ref=&prm=0
 http://tf999.8n8.com:80/inv.html
-http://tf999.8n8.com:80/rbase3.html
 http://tf999.8n8.com:80/robots.txt
 http://tf999.8n8.com:80/tf/yuanwang
 http://www.v8v8.8n8.com:80/
@@ -606,3 +612,4 @@ http://zaozhuang.8n8.com:80/rbase2.html
 http://zaozhuang.8n8.com:80/rbase3.html
 http://zaozhuang.8n8.com:80/robots.txt
 http://zaozhuang.8n8.com:80/xoom.html
+

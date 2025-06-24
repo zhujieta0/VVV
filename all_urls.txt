@@ -1,3 +1,4 @@
+
 http://51kan.8n8.com:80/
 http://51kan.8n8.com:80/521/5/yanhua.txt
 http://51kan.8n8.com:80/empty.html
@@ -66,6 +67,7 @@ http://8n8.com/js/common.js
 http://8n8.com/js/jquery-1.7.1.min.js
 http://8n8.com/js/jquery.php
 http://8n8.com/pp.php?c=1
+http://8n8.com/robots.txt
 http://8n8.com:80/?search=Online+Gambling&page=2
 http://8n8.com:80/?search=affiliate+program
 http://8n8.com:80/?search=auto+insurance
@@ -564,7 +566,11 @@ http://zaozhuang.8n8.com:80/rbase2.html
 http://zaozhuang.8n8.com:80/rbase3.html
 http://zaozhuang.8n8.com:80/robots.txt
 http://zaozhuang.8n8.com:80/xoom.html
+https://8n8.com/
+https://8n8.com/cl/bottom.php
 https://8n8.com/cl/favicon.ico
+https://8n8.com/cl/main.php?offer=
+https://8n8.com/cl/top.php
 https://8n8.com/cl/tpl/commonFile/css/jquery-ui/sunny/images/ui-bg_diagonals-medium_20_d34d17_40x40.png
 https://8n8.com/cl/tpl/commonFile/css/jquery-ui/sunny/images/ui-bg_flat_30_cccccc_40x100.png
 https://8n8.com/cl/tpl/commonFile/css/jquery-ui/sunny/images/ui-bg_flat_50_5c5c5c_40x100.png
@@ -602,6 +608,8 @@ https://8n8.com/cl/tpl/wnsrab/style/default.css
 https://8n8.com/cl/tpl/wnsrab/style/index.css
 https://8n8.com/images/paizhao.png
 https://8n8.com/images/re.gif
+https://8n8.com/member/check/speed.php
+https://8n8.com/robots.txt
 https://www.8n8.com/?intr=8881
 https://www.8n8.com/?intr=8882
 https://www.8n8.com/images/bgfirst.jpg

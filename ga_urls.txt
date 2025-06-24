@@ -608,3 +608,5 @@ http://zaozhuang.8n8.com:80/robots.txt
 http://zaozhuang.8n8.com:80/xoom.html
 http://www.8n8.com/
 http://8n8.com/
+http://www.8n8.com/
+http://8n8.com/
