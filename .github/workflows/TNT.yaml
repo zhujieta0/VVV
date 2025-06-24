@@ -43,13 +43,6 @@ jobs:
       - name: Add Go bin to PATH  # 确保工具可被后续步骤访问
         run: echo "$GOPATH/bin" >> $GITHUB_PATH
 
-      # ... 后续步骤保持不变 ...
-      - name: Running DNS enumeration...
-        run: |
-          rm -rf *_*.txt
-          subfinder -dL domains.txt -config config/subfinder-config.yaml | dnsx -t 350 -o active_subdomains.txt
-        shell: bash
-
       # ... 其他步骤保持不变 ...
 
       - name: Running DNS enumeration...
