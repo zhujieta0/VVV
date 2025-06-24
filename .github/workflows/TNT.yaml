@@ -22,7 +22,7 @@ jobs:
         id: tool-cache
         with:
           path: /home/runner/go/bin
-          key: ${{ runner.os }}-pd-tools-${{ hashFiles('/home/runner/go/bin') }}
+          key: ${{ runner.os }}-pd-tools-${{ hashFiles('/home/runner/go/bin/**') }}
           
       - name: Setup Dependencies
         run: sudo apt-get install -y libpcap-dev
