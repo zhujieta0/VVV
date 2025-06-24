@@ -57,14 +57,6 @@ jobs:
         shell: bash
 
 
-      - name: Running httpx for HTTP webservers probbing
-        run: |
-
-           #httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -p 1-65535 -t 730 | tee active_urls.txt
-           httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -t 730 -o active_urls.txt
-           httpx -l active_subdomains.txt -title -t 230
-        shell: bash
-
       - name: Running way/gau for getting all urls...
         continue-on-error: true
         timeout-minutes: 340
@@ -76,13 +68,22 @@ jobs:
           #naabu -l passive_subdomains.txt -tp 1000 -c 3000 | tee naabu.txt
           ##cat naabu.txt | waybackurls | tee way_urls.txt
 
-          naabu -l active_urls.txt -p 1-65535 -c 2000 | httpx -title -t 230 | tee naa_port.txt
+          naabu -l active_subdomains.txt -p 1-65535 -c 2000 | httpx -title -t 230 | tee naa_port.txt
           
           cat naa_port.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
           cat naa_port.txt | waybackurls > way_urls.txt
           if [ $(wc -l < ga_urls.txt) -le 20000 ] && [ $(wc -l < way_urls.txt) -le 20000 ]; then
             sort -u ga_urls.txt way_urls.txt -o all_urls.txt
           fi
+
+      - name: Running httpx for HTTP webservers probbing
+        run: |
+
+           #httpx -l active_subdomains.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -p 1-65535 -t 730 | tee active_urls.txt
+           
+           httpx -l all_urls.txt -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -t 730 -o active_urls.txt
+           httpx -l all_urls.txt -title -t 230
+        shell: bash
           
       - name: Running NucleiFuzing for vulnerability assessment
         continue-on-error: true
