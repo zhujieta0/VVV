@@ -1,8 +1,8 @@
-pan.smartcitysz.com
-wpsyundoc.smartcitysz.com
 www.smartcitysz.com
-api3.szgz1.smartcitysz.com
-cpan.smartcitysz.com
+pan.smartcitysz.com
 iam.smartcitysz.com
 oa.smartcitysz.com
+cpan.smartcitysz.com
+api3.szgz1.smartcitysz.com
+wpsyundoc.smartcitysz.com
 console.szgz1.smartcitysz.com

@@ -1,5 +1,3 @@
-http://smartcitysz.com/
-http://www.smartcitysz.com/home/about
 https://smartcitysz.com/
 https://www.smartcitysz.com/.well-known/ai-plugin.json
 https://www.smartcitysz.com/.well-known/assetlinks.json
@@ -82,6 +80,8 @@ http://www.smartcitysz.com/;jsessionid=8A0741EDC1A95143E5001B753E6CA4AF
 https://www.smartcitysz.com/home/partyBuildingStyle
 https://www.smartcitysz.com/robots.txt
 http://www.smartcitysz.com/robots.txt
+http://smartcitysz.com/
+http://www.smartcitysz.com/home/about
 http://smartcitysz.com/
 http://www.smartcitysz.com/home/about
 http://smartcitysz.com/
