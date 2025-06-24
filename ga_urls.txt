@@ -1,7 +1,5 @@
 http://smartcitysz.com/
 http://www.smartcitysz.com/home/about
-http://smartcitysz.com/
-http://www.smartcitysz.com/home/about
 https://smartcitysz.com/
 https://www.smartcitysz.com/.well-known/ai-plugin.json
 https://www.smartcitysz.com/.well-known/assetlinks.json
@@ -78,5 +76,13 @@ https://www.smartcitysz.com/indexResources/js/swiper.min-b1f64dfa2d087716f481fa4
 https://www.smartcitysz.com/js/layer/layer-6e80f0cff749c82653b9cdde9eeab937.js
 https://www.smartcitysz.com/robots.txt
 https://www.smartcitysz.com/sitemap.xml
+http://www.smartcitysz.com/
+https://www.smartcitysz.com/;jsessionid=2BE1D90A6D796CE735F495E928E41C13
+http://www.smartcitysz.com/;jsessionid=8A0741EDC1A95143E5001B753E6CA4AF
+https://www.smartcitysz.com/home/partyBuildingStyle
+https://www.smartcitysz.com/robots.txt
+http://www.smartcitysz.com/robots.txt
+http://smartcitysz.com/
+http://www.smartcitysz.com/home/about
 http://smartcitysz.com/
 http://www.smartcitysz.com/home/about
