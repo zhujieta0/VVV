@@ -39,6 +39,8 @@ jobs:
           go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
           go install -v github.com/lc/gau/v2/cmd/gau@latest
           go install -v github.com/tomnomnom/waybackurls@latest
+          go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+          go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
         shell: bash
 
       - name: Add Go bin to PATH  # 确保工具可被后续步骤访问
@@ -50,8 +52,8 @@ jobs:
         run: |
           rm -rf *_*.txt
           subfinder -dL domains.txt -config config/subfinder-config.yaml | dnsx -t 350 -o active_subdomains.txt
-          # dnsx -l active_subdomains.txt -t 350 | tee -a active_subdomains.txt
-          # sort -u active_subdomains.txt     
+          dnsx -l active_subdomains.txt -t 350 | tee -a active_subdomains.txt
+          sort -u active_subdomains.txt     
         shell: bash
 
 
@@ -73,9 +75,11 @@ jobs:
           #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | tee naabu.txt
           #naabu -l passive_subdomains.txt -tp 1000 -c 3000 | tee naabu.txt
           ##cat naabu.txt | waybackurls | tee way_urls.txt
+
+          naabu -l active_urls.txt -p 1-65535 -c 2000 | httpx -title -t 230 | tee naa_port.txt
           
-          cat active_urls.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
-          cat active_urls.txt | waybackurls > way_urls.txt
+          cat naa_port.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
+          cat naa_port.txt | waybackurls > way_urls.txt
           if [ $(wc -l < ga_urls.txt) -le 20000 ] && [ $(wc -l < way_urls.txt) -le 20000 ]; then
             sort -u ga_urls.txt way_urls.txt -o all_urls.txt
           fi
