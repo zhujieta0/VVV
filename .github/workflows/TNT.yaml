@@ -1,7 +1,7 @@
 name: TNT
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,14 +14,21 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.24.4
-          cache: 'go'
-          path: /home/runner/go
-          key: ${{ runner.os }}-go
+          cache: true  # 自动缓存Go模块依赖
+          cache-dependency-path: go.sum  # 根据go.sum变化更新缓存
+
+      - name: Cache ProjectDiscovery tools  # 新增：缓存二进制工具
+        uses: actions/cache@v3
+        id: tool-cache
+        with:
+          path: ${{ env.GOPATH }}/bin  # 缓存Go安装的二进制文件
+          key: ${{ runner.os }}-pd-tools-${{ hashFiles('**/go.mod') }}
 
       - name: Setup Dependencies
-        run: sudo apt-get install libpcap-dev  
+        run: sudo apt-get install -y libpcap-dev
 
       - name: Setting up ProjectDiscovery tools
+        if: steps.tool-cache.outputs.cache-hit != 'true'  # 仅在缓存未命中时安装
         env:
           GO111MODULE: on
         run: |
@@ -31,17 +38,19 @@ jobs:
           go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
           go install -v github.com/lc/gau/v2/cmd/gau@latest
           go install -v github.com/tomnomnom/waybackurls@latest
-          go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-          #go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
-          
         shell: bash
-        
-#       - name: Cache ProjectDiscovery tools
-#         uses: actions/cache@v3
-#         with:
-#           cache: 'tools'
-#           path: /home/runner/go
-#           key: ${{ runner.os }}-go-tools
+
+      - name: Add Go bin to PATH  # 确保工具可被后续步骤访问
+        run: echo "$GOPATH/bin" >> $GITHUB_PATH
+
+      # ... 后续步骤保持不变 ...
+      - name: Running DNS enumeration...
+        run: |
+          rm -rf *_*.txt
+          subfinder -dL domains.txt -config config/subfinder-config.yaml | dnsx -t 350 -o active_subdomains.txt
+        shell: bash
+
+      # ... 其他步骤保持不变 ...
 
       - name: Running DNS enumeration...
         run: |
