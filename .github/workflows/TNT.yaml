@@ -15,26 +15,14 @@ jobs:
         with:
           go-version: 1.24.4
           cache: true  # 自动缓存Go模块依赖
-          cache-dependency-path: go.sum  # 根据go.sum变化更新缓存
-
-      # - name: Cache ProjectDiscovery tools  # 新增：缓存二进制工具
-      #   uses: actions/cache@v3
-      #   id: tool-cache
-      #   with:
-      #     path: ${{ env.GOPATH }}/bin  # 缓存Go安装的二进制文件
-      #     key: ${{ runner.os }}-pd-tools-${{ hashFiles('**/go.mod') }}
+          cache-dependency-path: go.bin  # 根据go.sum变化更新缓存
+        
       - name: Cache ProjectDiscovery tools
         uses: actions/cache@v3
         id: tool-cache
         with:
-          path: |
-            /home/runner/go/bin/subfinder
-            /home/runner/go/bin/dnsx
-            /home/runner/go/bin/naabu
-            /home/runner/go/bin/httpx
-            /home/runner/go/bin/gau
-            /home/runner/go/bin/waybackurls
-          key: ${{ runner.os }}-pd-tools-${{ hashFiles('**/go.mod') }}
+          path: /home/runner/go/bin
+          key: ${{ runner.os }}-pd-tools-${{ hashFiles('/home/runner/go/bin') }}
           
       - name: Setup Dependencies
         run: sudo apt-get install -y libpcap-dev
@@ -86,9 +74,11 @@ jobs:
           ##cat naabu.txt | waybackurls | tee way_urls.txt
           
           cat active_urls.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
-          cat active_urls.txt | waybackurls > way_urls.txt | tee -a ga_urls.txt
-          #sort -u ga_urls.txt
-
+          cat active_urls.txt | waybackurls > way_urls.txt
+          if [ $(wc -l < ga_urls.txt) -le 20000 ] && [ $(wc -l < way_urls.txt) -le 20000 ]; then
+            sort -u ga_urls.txt way_urls.txt -o all_urls.txt
+          fi
+          
       - name: Running NucleiFuzing for vulnerability assessment
         continue-on-error: true
         timeout-minutes: 340
@@ -104,8 +94,8 @@ jobs:
           git add *.txt
       - name: Commit results to Github
         run: |
-          git config --local user.email "admin@kylin.org"
-          git config --global user.name "kylin-team"
+          git config --local user.email "admin@fuck.org"
+          git config --global user.name "fukin-team"
           git commit -m "InCloud Report" -a --allow-empty
       - name: Push changes
         uses: ad-m/github-push-action@master
