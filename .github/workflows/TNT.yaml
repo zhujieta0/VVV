@@ -81,9 +81,9 @@ jobs:
         continue-on-error: true
         timeout-minutes: 340
         run: |
-          nuclei -up
+          #nuclei -up
           git clone https://github.com/projectdiscovery/fuzzing-templates.git
-          nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 50 -o nuc_out.txt
+          #nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 50 -o nuc_out.txt
           
         shell: bash
 
