@@ -1,3 +1,5 @@
+http://www.8n8.com/
+http://8n8.com/
 http://www.8n8.com:80/
 https://www.8n8.com/?intr=8881
 https://www.8n8.com/?intr=8882
@@ -606,7 +608,5 @@ http://zaozhuang.8n8.com:80/rbase2.html
 http://zaozhuang.8n8.com:80/rbase3.html
 http://zaozhuang.8n8.com:80/robots.txt
 http://zaozhuang.8n8.com:80/xoom.html
-http://www.8n8.com/
-http://8n8.com/
 http://www.8n8.com/
 http://8n8.com/
