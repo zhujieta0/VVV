@@ -17,13 +17,25 @@ jobs:
           cache: true  # 自动缓存Go模块依赖
           cache-dependency-path: go.sum  # 根据go.sum变化更新缓存
 
-      - name: Cache ProjectDiscovery tools  # 新增：缓存二进制工具
+      # - name: Cache ProjectDiscovery tools  # 新增：缓存二进制工具
+      #   uses: actions/cache@v3
+      #   id: tool-cache
+      #   with:
+      #     path: ${{ env.GOPATH }}/bin  # 缓存Go安装的二进制文件
+      #     key: ${{ runner.os }}-pd-tools-${{ hashFiles('**/go.mod') }}
+      - name: Cache ProjectDiscovery tools
         uses: actions/cache@v3
         id: tool-cache
         with:
-          path: ${{ env.GOPATH }}/bin  # 缓存Go安装的二进制文件
+          path: |
+            /home/runner/go/bin/subfinder
+            /home/runner/go/bin/dnsx
+            /home/runner/go/bin/naabu
+            /home/runner/go/bin/httpx
+            /home/runner/go/bin/gau
+            /home/runner/go/bin/waybackurls
           key: ${{ runner.os }}-pd-tools-${{ hashFiles('**/go.mod') }}
-
+          
       - name: Setup Dependencies
         run: sudo apt-get install -y libpcap-dev
 
