@@ -70,6 +70,7 @@ jobs:
           # naabu -l active_subdomains.txt -p 1-65535 -c 20000 | httpx -title -t 230 | tee naa_port.txt
 
           naabu -l active_subdomains.txt -p 1-65535 -c 20000 -o naa_port.txt
+          cat naa_port.txt
           
           cat naa_port.txt | gau --subs --blacklist png,jpg,gif,css --o ga_urls.txt
           cat naa_port.txt | waybackurls > way_urls.txt
@@ -92,7 +93,7 @@ jobs:
         run: |
           #nuclei -up
           git clone https://github.com/projectdiscovery/fuzzing-templates.git
-          #nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 50 -o nuc_out.txt
+          nuclei -l ga_urls.txt -t fuzzing-templates/ -rl 50 -o nuc_out.txt
           
         shell: bash
 
